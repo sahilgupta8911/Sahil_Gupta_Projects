@@ -1,0 +1,42 @@
+<%- include('./partials/header'); %>
+
+    <main>
+        <div class="ui grid segment ">
+            <div class="segment eight wide column">
+                <h1>Users List</h1>
+                <p>All registered users</p>
+            </div>
+
+            <ul>
+                <% machines.forEach(function(machine) { %>
+                    <li class="ui segment">
+
+                        <div class="title">
+                            machine id =
+                            <%= machine.mid%>
+                        </div>
+                        <div class="content">
+                            branch id =
+                            <%= machine.bid %>
+                                <br>
+                                booking id =
+                                <%= machine.quid %>
+                                    <br>
+                                    time started =
+                                    <%= machine.time %>
+
+                        </div>
+
+                    </li>
+                    <% }); %>
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <%- include('./partials/footer'); %>
+    </footer>
+
+    </body>
+
+    </html>

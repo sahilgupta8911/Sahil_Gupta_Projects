@@ -1,0 +1,61 @@
+<link href="/styles/style.css" rel="stylesheet" type="text/css">
+<script>
+    approve = function (quid) {
+        return fetch("https://laundrymanage.herokuapp.com/acceptQueries?" + new URLSearchParams({ id: quid, }))
+            .then(res => res.json())
+    } 
+</script>
+<%- include('./partials/header'); %>
+    <main>
+        <div class="ui segment">
+            <h1>Laundromat</h1>
+            <p>Admin Panel</p>
+        </div>
+        <h2>Queries</h2>
+        <p>
+            <%= subheading %>
+        </p>
+
+        <ul>
+            <% obj.forEach(function(query) { %>
+                <li class="<%= query.status.data==1 ? 'segment completed' : 'segment pending' %>">
+                    <div class="content-box-gray ">
+                        <div class="title">
+                            quid =
+                            <%= query.quid %>
+                        </div>
+                        <div class="content">
+                            <strong>
+                                type =
+                                <%= query.type %>
+                            </strong>
+
+                            user_id =
+                            <%= query.uid %>
+                                subquery_id =
+                                <%= query.query_id %>
+                                    time_stamp =
+                                    <%= query.time_stamp %>
+                        </div>
+                        <% if(query.status.data==1){ %>
+
+                            <% } else{ %>
+                                <button onclick="approve('<%= query.quid %>')">approve</button>
+                                <% } %>
+
+
+                    </div>
+                </li>
+                <% }); %>
+        </ul>
+
+    </main>
+
+    <footer>
+        <%- include('./partials/footer'); %>
+
+    </footer>
+
+    </body>
+
+    </html>
